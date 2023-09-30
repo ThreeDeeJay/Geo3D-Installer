@@ -176,15 +176,15 @@ namespace Geo3D_Installer
                     }
                     if (found)
                     {
-                        System.IO.File.Copy("srReshade Alpha\\srReshade.addon", installDir + "\\srReshade.addon");
-                        System.IO.File.Copy(folder + "\\DimencoWeaving.dll", installDir + "\\DimencoWeaving.dll");
-                        System.IO.File.Copy(folder + "\\Glog.dll", installDir + "\\Glog.dll");
-                        System.IO.File.Copy(folder + "\\Opencv_world343.dll", installDir + "\\Opencv_world343.dll");
-                        System.IO.File.Copy(folder + "\\SimulatedReality.dll", installDir + "\\imulatedReality.dll");
-                        System.IO.File.Copy(folder + "\\SimulatedRealityCore.dll", installDir + "\\SimulatedRealityCore.dll");
-                        System.IO.File.Copy(folder + "\\SimulatedRealityDirectX.dll", installDir + "\\SimulatedRealityDirectX.dll");
-                        System.IO.File.Copy(folder + "\\SimulatedRealityDisplays.dll", installDir + "\\SimulatedRealityDisplays.dll");
-                        System.IO.File.Copy(folder + "\\SimulatedRealityFacetrackers.dll", installDir + "\\SimulatedRealityFacetrackers.dll");
+                        System.IO.File.Copy("srReshade Alpha\\srReshade5.9.2_SR_1.27.4.addon", installDir + "\\srReshade5.9.2_SR_1.27.4.addon", true);
+                        System.IO.File.Copy(folder + "\\DimencoWeaving.dll", installDir + "\\DimencoWeaving.dll", true);
+                        System.IO.File.Copy(folder + "\\Glog.dll", installDir + "\\Glog.dll", true);
+                        System.IO.File.Copy(folder + "\\Opencv_world343.dll", installDir + "\\Opencv_world343.dll", true);
+                        System.IO.File.Copy(folder + "\\SimulatedReality.dll", installDir + "\\SimulatedReality.dll", true);
+                        System.IO.File.Copy(folder + "\\SimulatedRealityCore.dll", installDir + "\\SimulatedRealityCore.dll", true);
+                        System.IO.File.Copy(folder + "\\SimulatedRealityDirectX.dll", installDir + "\\SimulatedRealityDirectX.dll", true);
+                        System.IO.File.Copy(folder + "\\SimulatedRealityDisplays.dll", installDir + "\\SimulatedRealityDisplays.dll", true);
+                        System.IO.File.Copy(folder + "\\SimulatedRealityFacetrackers.dll", installDir + "\\SimulatedRealityFacetrackers.dll", true);
                     }
                 }
                 
@@ -288,11 +288,12 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\d3d12.dll");
             System.IO.File.Delete(combinedPath + "\\dxgi.dll");
 
-            System.IO.File.Delete(combinedPath + "\\srReshade.addon");
+            System.IO.File.Delete(combinedPath + "\\srReshade5.addon");
+            System.IO.File.Delete(combinedPath + "\\srReshade5.9.2_SR_1.27.4.addon");
             System.IO.File.Delete(combinedPath + "\\DimencoWeaving.dll");
             System.IO.File.Delete(combinedPath + "\\Glog.dll");
             System.IO.File.Delete(combinedPath + "\\Opencv_world343.dll");
-            System.IO.File.Delete(combinedPath + "\\imulatedReality.dll");
+            System.IO.File.Delete(combinedPath + "\\SimulatedReality.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityCore.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityDirectX.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityDisplays.dll");
