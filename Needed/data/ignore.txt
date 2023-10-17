@@ -57,6 +57,7 @@ Lossless Scaling
 Gears 5- Hivebusters
 Forza Horizon 5 Expansion 2
 Forza Horizon 5- Hot Wheels
+Forza Horizon 5- Rally Adventure
 EpicGamesLauncher
 DOOM (1993)
 DOOM II
@@ -111,3 +112,4 @@ Serious Sam VR: The Last Hope
 Serious Sam 3 VR: BFE
 STAR WARS™: Dark Forces
 Starfield Artbook & Soundtrack
+Q.U.B.E. 2 Soundtrack

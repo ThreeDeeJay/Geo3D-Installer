@@ -148,16 +148,51 @@ namespace Geo3D_Installer
             {
                 System.IO.File.Copy("ReShade\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
                 System.IO.File.Copy("ReShade\\ReShadePreset.ini", installDir + "\\ReShadePreset.ini", true);
-                System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
+                if (currentGame.name == "Forza Motorsport")
+                    System.IO.File.Copy("ReShade\\ReShadeForza.ini", installDir + "\\ReShade.ini", true);
+                else
+                    System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
+            }
+
+            if (currentGame.bits == "x86")
+            {
+                if (xSR.IsChecked == true)
+                {
+                    MessageBox.Show("32-bit unsupported on Simulated Reality");
+                    return;
+                }
+                if (dxVersion == 9)
+                {
+                    System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\d3d9.dll", true);
+                    System.IO.File.Delete(installDir + "\\dxgi.dll");
+                }
+                else if (dxVersion == 10)
+                {
+                    System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\dxgi.dll", true);
+                    System.IO.File.Delete(installDir + "\\d3d9.dll");
+                }
+                else if (dxVersion == 0)
+                {
+                    try
+                    {
+                        if (System.IO.File.Exists(installDir + "\\dxgi.dll"))
+                            System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\dxgi.dll", true);
+                        if (System.IO.File.Exists(installDir + "\\d3d9.dll"))
+                            System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\d3d9.dll", true);
+                    }
+                    catch { }
+                }
+                System.IO.File.Copy("Geo3D\\Geo3D_32.addon", installDir + "\\Geo3D.addon", true);
             }
             if (currentGame.bits == "x64")
             {
                 if (xSR.IsChecked == true)
                 {
-                    string folder = "C:\\Program Files\\Acer\\SpatialLabs\\SR Platform\\bin";
+                    string folder;
                     bool found = false;
                     while (true)
                     {
+                        folder = "C:\\Program Files\\Acer\\SpatialLabs\\SR Platform\\bin";
                         if (Directory.Exists(folder))
                         {
                             found = true; break;
@@ -185,6 +220,11 @@ namespace Geo3D_Installer
                         System.IO.File.Copy(folder + "\\SimulatedRealityDirectX.dll", installDir + "\\SimulatedRealityDirectX.dll", true);
                         System.IO.File.Copy(folder + "\\SimulatedRealityDisplays.dll", installDir + "\\SimulatedRealityDisplays.dll", true);
                         System.IO.File.Copy(folder + "\\SimulatedRealityFacetrackers.dll", installDir + "\\SimulatedRealityFacetrackers.dll", true);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Simulated Reality display found!");
+                        return;
                     }
                 }
                 
@@ -218,30 +258,10 @@ namespace Geo3D_Installer
                             System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\d3d12.dll", true);
                     } catch { }
                 }
-                System.IO.File.Copy("Geo3D\\Geo3D_64.addon", installDir + "\\Geo3D.addon", true);
-                System.IO.File.Copy("DXIL\\dxcompiler.dll", installDir + "\\dxcompiler.dll", true);
+                System.IO.File.Copy("Geo3D\\Geo3D.addon", installDir + "\\Geo3D.addon", true);
+                if (!System.IO.File.Exists(installDir + "\\dxcompiler.dll"))
+                    System.IO.File.Copy("DXIL\\dxcompiler.dll", installDir + "\\dxcompiler.dll", true);
                 System.IO.File.Copy("DXIL\\dxil.dll", installDir + "\\dxil.dll", true);
-            }
-            else
-            {
-                if (dxVersion == 9)
-                {
-                    System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\d3d9.dll", true);
-                    System.IO.File.Delete(installDir + "\\dxgi.dll");
-                }
-                else if (dxVersion == 10)
-                {
-                    System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\dxgi.dll", true);
-                    System.IO.File.Delete(installDir + "\\d3d9.dll");
-                }
-                else if (dxVersion == 0)
-                {
-                    if (System.IO.File.Exists(installDir + "\\dxgi.dll"))
-                        System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\dxgi.dll", true);
-                    if (System.IO.File.Exists(installDir + "\\d3d9.dll"))
-                        System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\d3d9.dll", true);
-                }
-                System.IO.File.Copy("Geo3D\\Geo3D_32.addon", installDir + "\\Geo3D.addon", true);
             }
 
             gameGeo3D.Clear();
@@ -288,6 +308,12 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\d3d12.dll");
             System.IO.File.Delete(combinedPath + "\\dxgi.dll");
 
+            var fi = new FileInfo(combinedPath + "\\dxcompiler.dll");
+            if (fi.Length == 17107352)
+            {
+                fi.Delete();
+            }
+            System.IO.File.Delete(combinedPath + "\\dxil.dll");
             System.IO.File.Delete(combinedPath + "\\srReshade5.addon");
             System.IO.File.Delete(combinedPath + "\\srReshade5.9.2_SR_1.27.4.addon");
             System.IO.File.Delete(combinedPath + "\\DimencoWeaving.dll");
