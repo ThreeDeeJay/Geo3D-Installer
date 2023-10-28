@@ -309,7 +309,7 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\dxgi.dll");
 
             var fi = new FileInfo(combinedPath + "\\dxcompiler.dll");
-            if (fi.Length == 17107352)
+            if (fi.Exists && fi.Length == 17107352)
             {
                 fi.Delete();
             }
@@ -763,7 +763,10 @@ namespace Geo3D_Installer
                                 if (!ignores.Contains(name))
                                 {
                                     (sender as BackgroundWorker).ReportProgress(0);
-                                    addGame(name, path);
+                                    if (Directory.Exists(path))
+                                    {
+                                        addGame(name, path);
+                                    }
                                 }
                             }
                         }
