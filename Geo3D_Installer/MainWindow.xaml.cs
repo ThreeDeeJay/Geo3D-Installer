@@ -182,7 +182,7 @@ namespace Geo3D_Installer
                     }
                     catch { }
                 }
-                System.IO.File.Copy("Geo3D\\Geo3D_32.addon", installDir + "\\Geo3D.addon", true);
+                System.IO.File.Copy("Geo3D\\Geo3D.addon32", installDir + "\\Geo3D.addon32", true);
             }
             if (currentGame.bits == "x64")
             {
@@ -258,7 +258,7 @@ namespace Geo3D_Installer
                             System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\d3d12.dll", true);
                     } catch { }
                 }
-                System.IO.File.Copy("Geo3D\\Geo3D.addon", installDir + "\\Geo3D.addon", true);
+                System.IO.File.Copy("Geo3D\\Geo3D.addon64", installDir + "\\Geo3D.addon64", true);
                 if (!System.IO.File.Exists(installDir + "\\dxcompiler.dll"))
                     System.IO.File.Copy("DXIL\\dxcompiler.dll", installDir + "\\dxcompiler.dll", true);
                 System.IO.File.Copy("DXIL\\dxil.dll", installDir + "\\dxil.dll", true);
