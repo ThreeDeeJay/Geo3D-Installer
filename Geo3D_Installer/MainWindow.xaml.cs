@@ -303,6 +303,8 @@ namespace Geo3D_Installer
             string combinedPath = Directory.GetParent(currentGame.path + "\\" + currentGame.exe).ToString();
             System.IO.File.Delete(combinedPath + "\\3DToElse.fx");
             System.IO.File.Delete(combinedPath + "\\Geo3D.addon");
+            System.IO.File.Delete(combinedPath + "\\Geo3D.addon32");
+            System.IO.File.Delete(combinedPath + "\\Geo3D.addon64");
 
             System.IO.File.Delete(combinedPath + "\\d3d9.dll");
             System.IO.File.Delete(combinedPath + "\\d3d12.dll");
@@ -450,7 +452,11 @@ namespace Geo3D_Installer
         void addGame(string name, string path)
         {
             Game g;
-            if (name == "World of Warcraft")
+            if (name == "AFOP")
+            {
+                addGame("Avatar: Frontiers of Pandora", path);
+            }
+            else if (name == "World of Warcraft")
             {
                 g = new Game(name, path + @"\_retail_");
                 gameList.Add(g);
