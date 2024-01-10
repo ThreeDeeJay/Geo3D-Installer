@@ -148,10 +148,7 @@ namespace Geo3D_Installer
             {
                 System.IO.File.Copy("ReShade\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
                 System.IO.File.Copy("ReShade\\ReShadePreset.ini", installDir + "\\ReShadePreset.ini", true);
-                if (currentGame.name == "Forza Motorsport")
-                    System.IO.File.Copy("ReShade\\ReShadeForza.ini", installDir + "\\ReShade.ini", true);
-                else
-                    System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
+                System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
             }
 
             if (currentGame.bits == "x86")
